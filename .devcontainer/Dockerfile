@@ -114,7 +114,7 @@ RUN git clone https://github.com/CollaborativeRoboticsLab/grippers.git
 WORKDIR /home/${USERNAME}/colcon_ws/src/
 
 RUN git clone https://github.com/CollaborativeRoboticsLab/grasping.git
-RUN git clone https://github.com/CollaborativeRoboticsLab/grasping_anygrasp.git
+# RUN git clone https://github.com/CollaborativeRoboticsLab/grasping_anygrasp.git
 
 ############################################################################
 ####        Change user

@@ -33,6 +33,7 @@
   <exec_depend>controller_manager</exec_depend>
   <exec_depend>grasping_description_omron_moma</exec_depend>
   <exec_depend>gripper_description</exec_depend>
+  <exec_depend>gripper_ros</exec_depend>
   <exec_depend>moveit_configs_utils</exec_depend>
   <exec_depend>moveit_ros_move_group</exec_depend>
   <exec_depend>moveit_servo</exec_depend>
@@ -44,7 +45,6 @@
   <exec_depend>rviz_common</exec_depend>
   <exec_depend>rviz_default_plugins</exec_depend>
   <exec_depend>tf2_ros</exec_depend>
-  <exec_depend>tm12s_soft_two_fingers_moveit_config</exec_depend>
   <exec_depend>tm_driver</exec_depend>
   <exec_depend>warehouse_ros_mongo</exec_depend>
   <exec_depend>xacro</exec_depend>

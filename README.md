@@ -16,7 +16,7 @@ Use the following command to start the realsense D435 camera.
 
 ```bash
 source install/setup.bash
-ros2 launch grasping_camera d435.launch.py
+ros2 launch anygrasp_realsense d435.launch.py
 ```
 
 ## Starting Omron Moma and Gripper with MoveIt
