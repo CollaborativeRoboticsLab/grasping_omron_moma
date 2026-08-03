@@ -1,6 +1,6 @@
 moveit_setup_assistant_config:
   urdf:
-    package: grasping_description
+    package: grasping_description_omron_moma
     relative_path: xacro/ld250_tm12x_soft_two_fingers/ld250-tm12x-soft-two-fingers.urdf.xacro
   srdf:
     relative_path: config/ld250_tm12x_soft_two_fingers.srdf

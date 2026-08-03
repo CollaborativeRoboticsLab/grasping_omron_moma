@@ -3,7 +3,7 @@
     <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
 
     <!-- Import ld250_tm12x_soft_two_fingers urdf file -->
-    <xacro:include filename="$(find grasping_description)/xacro/ld250_tm12x_soft_two_fingers/ld250-tm12x-soft-two-fingers.urdf.xacro" />
+    <xacro:include filename="$(find grasping_description_omron_moma)/xacro/ld250_tm12x_soft_two_fingers/ld250-tm12x-soft-two-fingers.urdf.xacro" />
 
     <!-- Import control_xacro -->
     <xacro:include filename="ld250_tm12x_soft_two_fingers.ros2_control.xacro" />

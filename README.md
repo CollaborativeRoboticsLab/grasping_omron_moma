@@ -6,8 +6,8 @@ This extends the [CollaborativeRoboticsLab/grasping](https://github.com/Collabor
 
 ## Getting Started
 
-- [Devcontainer connection](./docs/manipulator/ld250_tm12x_connection.md)
-- [Tf frames for gripper compatibility](./docs/manipulator/ld250_tm12x_tf_frames.md)
+- [Devcontainer connection](./docs/ld250_tm12x_connection.md)
+- [Tf frames for gripper compatibility](./docs/ld250_tm12x_tf_frames.md)
 
 
 ## Starting the camera
@@ -25,5 +25,5 @@ Use the following command to start the Omron MOMA manipulator and gripper with M
 
 ```bash
 source install/setup.bash
-ros2 launch grasping_control ld250_tm12x_soft_two_fingers.launch.py
+ros2 launch ld250_tm12x_soft_two_fingers_moveit_config hardware_with_moveit.launch.py
 ``` 
