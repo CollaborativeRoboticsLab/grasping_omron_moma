@@ -15,6 +15,9 @@ def generate_launch_description() -> LaunchDescription:
 		'ld250_tm12x_soft_two_fingers_moveit_config'
 	)
 	moma_ros_share = get_package_share_directory('moma_ros')
+	default_motion_config_file = str(
+		Path(grasping_omron_moma_share) / 'config' / 'motion_config.yaml'
+	)
 	default_workspace_file = str(
 		Path(grasping_omron_moma_share) / 'config' / 'crlab_table.yaml'
 	)
@@ -80,16 +83,16 @@ def generate_launch_description() -> LaunchDescription:
 			str(Path(grasping_control_share) / 'launch' / 'motion_execution.launch.py')
 		),
 		launch_arguments={
-			'motion_config_file': str(
-				Path(grasping_omron_moma_share) / 'config' / 'motion_config.yaml'
-			),
+			'motion_config_file': LaunchConfiguration('motion_config_file'),
 			'workspace_file': LaunchConfiguration('workspace_file'),
+			'launch_feasiblity_service': 'true',
 		}.items(),
 	)
 
 	return LaunchDescription(
 		[
 			DeclareLaunchArgument('use_demo', default_value='false'),
+			DeclareLaunchArgument('motion_config_file', default_value=default_motion_config_file),
 			DeclareLaunchArgument('workspace_file', default_value=default_workspace_file),
 			DeclareLaunchArgument('use_base', default_value='false'),
 			DeclareLaunchArgument('use_nav2', default_value='false'),

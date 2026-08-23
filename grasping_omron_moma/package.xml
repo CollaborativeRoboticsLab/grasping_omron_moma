@@ -15,6 +15,8 @@
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>ld250_tm12x_soft_two_fingers_moveit_config</exec_depend>
   <exec_depend>moma_ros</exec_depend>
+  <exec_depend>mobile_manipulator_control</exec_depend>
+  <exec_depend>mobile_manipulator_ros</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
