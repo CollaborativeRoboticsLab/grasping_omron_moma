@@ -1,8 +1,8 @@
 # Grasping Omron MOMA
 
-This repository extends the [CollaborativeRoboticsLab/grasping](https://github.com/CollaborativeRoboticsLab/grasping) stack for the Omron MOMA mobile manipulator with a TM12X arm and a soft two-finger gripper.
+This repository extends the [CollaborativeRoboticsLab/grasping](https://github.com/CollaborativeRoboticsLab/grasping) stack and uses it along with [CollaborativeRoboticsLab/mobile_manipulator](https://github.com/CollaborativeRoboticsLab/mobile_manipulator) stack to perform mobile manipulator based grasping for the Omron MOMA mobile manipulator with a TM12X arm and a soft two-finger gripper.
 
-It keeps Omron-specific launch and configuration in `grasping_omron_moma` while reusing the generic grasping runtime from `grasping_control`.
+It holds robot specific launch and configuration in `grasping_omron_moma` while reusing the generic grasping runtime from `grasping_control` and the generic mobile-manipulator runtime from `mobile_manipulator_ros`.
 
 ![system overview](./docs/system.png)
 
@@ -10,18 +10,6 @@ It keeps Omron-specific launch and configuration in `grasping_omron_moma` while 
 
 - [Devcontainer connection](./docs/ld250_tm12x_connection.md)
 - [TF frames for gripper compatibility](./docs/ld250_tm12x_tf_frames.md)
-
-## What This Package Provides
-
-- `grasping_omron_moma/launch/ld250_tm12x_soft_two_fingers.launch.py`: Omron bringup wrapper for MoveIt, optional base bringup, optional Nav2, and `motion_execution_node`
-- `grasping_omron_moma/launch/omron_task_feasibility_stack.launch.py`: one-command Omron bringup for grasping plus the mobile-manipulator task-feasibility runtime
-- `grasping_omron_moma/launch/task_feasibility.launch.py`: Omron wrapper for the generic `mobile_manipulator_server`
-- `grasping_omron_moma/launch/mobile_manipulator_control.launch.py`: Omron wrapper for the generic mobile-manipulator test client
-- `grasping_omron_moma/launch/simple_grasping.launch.py`: Omron wrapper for the generic named-pose grasp sequence client
-- `grasping_omron_moma/config/motion_config.yaml`: motion execution and named-pose configuration
-- `grasping_omron_moma/config/crlab_table.yaml`: workspace collision objects and workspace-area configuration
-- `grasping_omron_moma/config/task_feasibility.yaml`: Omron mobile-manipulator server configuration
-- `grasping_omron_moma/config/mobile_manipulator_control.yaml`: Omron mobile-manipulator test-client configuration
 
 ## Starting the Camera
 
@@ -37,28 +25,22 @@ ros2 launch anygrasp_realsense d435.launch.py
 Bring up the Omron grasping stack on hardware:
 
 ```bash
-source /opt/ros/jazzy/setup.bash
 source install/setup.bash
-ros2 launch grasping_omron_moma ld250_tm12x_soft_two_fingers.launch.py tm_robot_ip:=<robot_ip>
+ros2 launch grasping_omron_moma ld250_tm12x_soft_two_fingers.launch.py
 ```
 
 Run in demo mode:
 
 ```bash
-source /opt/ros/jazzy/setup.bash
 source install/setup.bash
 ros2 launch grasping_omron_moma ld250_tm12x_soft_two_fingers.launch.py use_demo:=true
 ```
 
-Enable the mobile base and Nav2 when needed:
+Enable the mobile base and Nav2 when needed (manipulator is enabled by default):
 
 ```bash
-source /opt/ros/jazzy/setup.bash
 source install/setup.bash
-ros2 launch grasping_omron_moma ld250_tm12x_soft_two_fingers.launch.py \
-  tm_robot_ip:=<robot_ip> \
-  use_base:=true \
-  use_nav2:=true
+ros2 launch grasping_omron_moma ld250_tm12x_soft_two_fingers.launch.py use_base:=true use_nav2:=true
 ```
 
 If you only want the raw arm, gripper, and MoveIt bringup without the grasping wrapper, you can still launch the MoveIt package directly:
@@ -73,15 +55,13 @@ ros2 launch ld250_tm12x_soft_two_fingers_moveit_config hardware_with_moveit.laun
 Bring up the Omron grasping stack together with the standalone mobile-manipulator task-feasibility runtime:
 
 ```bash
-source /opt/ros/jazzy/setup.bash
 source install/setup.bash
-ros2 launch grasping_omron_moma omron_task_feasibility_stack.launch.py tm_robot_ip:=<robot_ip>
+ros2 launch grasping_omron_moma omron_task_feasibility_stack.launch.py
 ```
 
 For demo mode:
 
 ```bash
-source /opt/ros/jazzy/setup.bash
 source install/setup.bash
 ros2 launch grasping_omron_moma omron_task_feasibility_stack.launch.py use_demo:=true
 ```
@@ -98,7 +78,6 @@ This launch starts:
 Run the simple named-pose grasping sequence after the motion stack is already running:
 
 ```bash
-source /opt/ros/jazzy/setup.bash
 source install/setup.bash
 ros2 launch grasping_omron_moma simple_grasping.launch.py
 ```
@@ -114,7 +93,6 @@ The default sequence is:
 If the grasp target may require moving the base before arm execution, start the Omron mobile-manipulator runtime:
 
 ```bash
-source /opt/ros/jazzy/setup.bash
 source install/setup.bash
 ros2 launch grasping_omron_moma task_feasibility.launch.py
 ```
@@ -122,7 +100,6 @@ ros2 launch grasping_omron_moma task_feasibility.launch.py
 To run the Omron test client against that runtime:
 
 ```bash
-source /opt/ros/jazzy/setup.bash
 source install/setup.bash
 ros2 launch grasping_omron_moma mobile_manipulator_control.launch.py
 ```
