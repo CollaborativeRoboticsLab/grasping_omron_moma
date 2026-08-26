@@ -18,9 +18,7 @@ def generate_launch_description() -> LaunchDescription:
 	default_motion_config_file = str(
 		Path(grasping_omron_moma_share) / 'config' / 'motion_config.yaml'
 	)
-	default_workspace_file = str(
-		Path(grasping_omron_moma_share) / 'config' / 'crlab_table.yaml'
-	)
+	default_workspace_file = 'config/crlab_table.yaml'
 
 	base_hardware = IncludeLaunchDescription(
 		PythonLaunchDescriptionSource(
@@ -85,6 +83,8 @@ def generate_launch_description() -> LaunchDescription:
 		launch_arguments={
 			'motion_config_file': LaunchConfiguration('motion_config_file'),
 			'workspace_file': LaunchConfiguration('workspace_file'),
+			'default_scene_name': 'crlab_table',
+			'default_scene_package': 'grasping_omron_moma',
 			'launch_feasiblity_service': 'true',
 		}.items(),
 	)
